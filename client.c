@@ -8,7 +8,10 @@
 #include <math.h>
 #define MESSAGE_SIZE 50
 char message[50];
-
+/*
+ * искать символ окончани команды
+ * создавать новый процесс
+ * */
 char buf[MESSAGE_SIZE];
 void showMenu()
 {
@@ -32,8 +35,8 @@ int main()
     }
 
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(3426);
-    addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+    addr.sin_port = htons(3422);
+    addr.sin_addr.s_addr = inet_addr("127.0.1.1");
     int c;
     if(connect(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0)
     {
@@ -54,17 +57,17 @@ int main()
         {
             case 1:
             {
-                strcat(message,"triangle");
+                strcat(message,"pulse");
                 break;
             }
             case 2:
             {
-                strcat(message,"triangle");
+                strcat(message,"sine");
                 break;
             }
             case 3:
             {
-                strcat(message,"triangle");
+                strcat(message,"sawtooth");
                 break;
             }
             case 4:
@@ -74,7 +77,7 @@ int main()
             }
             case 5:
             {
-                strcat(message,"triangle");
+                strcat(message,"square");
                 break;
             }
             case 6:
@@ -91,3 +94,5 @@ int main()
         printf("\n");
     }
 }
+
+
